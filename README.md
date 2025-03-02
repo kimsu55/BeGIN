@@ -12,8 +12,8 @@ In the paper we introduce 10 graph datasets with various types of noisy labels: 
 | Label noise types     | Class-dependent | Topology-dependent | Feature-dependent |
 | --------------------- | --------------- | ------------------ | ----------------- |
 | Uniform               | ✅
-| Pairwise               | ✅
-| Feature
+| Pairwise              | ✅
+| Feature               | <span style="color:green">✔ Done</span>
 | Topology
 | Confidence
 | LLM
