@@ -40,11 +40,13 @@ This framework allows users to use real-world datasets as follows:
 - Python 3.8+
 - torch>=2.1.0
 - pyg>=2.5.0
+- torch_scatter
 - huggingface-hub
+- numpy
+- scikit-learn
 - pandas
 - nltk
-
-
+- tqdm
 
 
 ```python
