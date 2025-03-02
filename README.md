@@ -6,8 +6,17 @@ This is the official repository for BeGIN benchmark.
 ## What is it?
 
 **BeGIN** offers 
-In the paper we introduce 10 graph datasets with various types of noisy labels: Cora-ML, WikiCS, Product-s, Children, History, Photo, Cornell, Texas, Washington, and Wisconsin.  You can download these datasets using `dataset`. Note: the datasets are stored as undirected, that is, each edge is stored only once. If you load the edges i
+In the paper we introduce 10 graph datasets with various types of noisy labels: Cora-ML, WikiCS, Product-s, Children, History, Photo, Cornell, Texas, Washington, and Wisconsin.  You can download these datasets using `dataset`.
 
+
+| Label noise types     | Class-dependent | Topology-dependent | Feature-dependent |
+| --------------------- | --------------- | ------------------ | ----------------- |
+| Uniform               | ✅
+| Pairwise               | ✅
+| Feature
+| Topology
+| Confidence
+| LLM
 
 
 ## Required Dependencies?
