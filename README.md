@@ -16,7 +16,7 @@ To simulate more realistic noise beyond class-dependent assumptions, we first in
 | Uniform               | <p align="center">✔</p>|     | |
 | Pairwise              | <p align="center">✔</p>|     | | 
 | Feature               |  <p align="center">✔</p>     |  | <p align="center">✔</p>|
-| Topology              | <p align="center">✔</p>|  | <p align="center">✔</p>|
+| Topology              | <p align="center">✔</p>|  <p align="center">✔</p>| |
 | Confidence            |<p align="center">✔</p>| <p align="center">✔</p>|<p align="center">✔</p>|
 | LLM                   |   | |<p align="center">✔</p>|
 
