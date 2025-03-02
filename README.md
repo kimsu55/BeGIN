@@ -5,6 +5,7 @@ This is the official repository for BeGIN benchmark.
 
 ### What is it?
 
+**BeGIN** offers 
 In the paper we introduce 10 graph datasets with various types of noisy labels: Cora-ML, WikiCS, Product-s, Children, History, Photo, Cornell, Texas, Washington, and Wisconsin.  You can download these datasets using `dataset`. Note: the datasets are stored as undirected, that is, each edge is stored only once. If you load the edges i
 
 
@@ -16,3 +17,20 @@ In the paper we introduce 10 graph datasets with various types of noisy labels: 
 - huggingface-hub
 - pandas
 - nltk
+
+
+### Built-in Datasets
+
+This framework allows users to use real-world datasets as follows:
+  | Dataset                                                 | # Nodes | # Edges |
+  | ------------------------------------------------------- | ------- | ------- |
+  | [Cora-ML](https://github.com/kimiyoung/planetoid)       | 2,995   | 8,158   |
+  | [WikiCS](https://github.com/kimiyoung/planetoid)        | 11,701  | 216,123  |
+  | [Product-s](https://github.com/kimiyoung/planetoid)     | 54,025   | 74,420   |
+  | [Children](https://openreview.net/forum?id=S1e2agrFvS)  | 76,875   | 1,554,578     |
+  | [History](https://openreview.net/forum?id=S1e2agrFvS)   | 41,551    | 358,574    |
+  | [Photo](https://openreview.net/forum?id=S1e2agrFvS)     | 48,362   | 500,939  |
+  | [Cornell](https://openreview.net/forum?id=S1e2agrFvS)   | 191     | 292    |
+  | [Texas](https://openreview.net/forum?id=S1e2agrFvS)     | 187   | 310  |
+  | [Washington](https://openreview.net/forum?id=S1e2agrFvS) | 229     | 394     |
+  | [Wisconsin](https://openreview.net/forum?id=S1e2agrFvS) | 265     | 510     |
