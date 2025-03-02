@@ -38,9 +38,8 @@ This framework allows users to use real-world datasets as follows:
 
 #### Required Dependencies?
 - Python 3.8+
-- torch>=2.1.0
+- torch>=2.1.0, torch_scatter
 - pyg>=2.5.0
-- torch_scatter
 - huggingface-hub
 - nltk
 - numpy, scikit-learn, pandas, tqdm
