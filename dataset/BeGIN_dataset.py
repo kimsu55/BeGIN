@@ -18,8 +18,7 @@ from dataset.utils import generate_node_features, download_hf_file
 
 
 
-
-class NoisyDataset(InMemoryDataset):
+class NoisyGraphDataset(InMemoryDataset):
     """
     PyG Dataset for BeGIN.
 
