@@ -25,11 +25,6 @@ To simulate more realistic noise beyond class-dependent assumptions, we introduc
 #### Built-in Datasets
 
 This framework allows users to use real-world datasets as follows:
-  | Category    | Cora-ML | WikiCS | Product-s | Children | History | Photo | Cornell | Texas | Washington | Wisconsin |
-|------------|---------|--------|-----------|----------|---------|-------|---------|-------|------------|-----------|
-| **# Nodes** | 2,995   | 11,701  | 54,025   | 76,875   | 41,551  | 48,362 | 191     | 187   | 229        | 265       |
-| **# Edges** | 8,158   | 216,123 | 74,420   | 1,554,578 | 358,574 | 500,939 | 292     | 310   | 394        | 510       |
-
 
 | Category    | Cora-ML | WikiCS | Product-s | Children | History | Photo | Cornell | Texas | Washington | Wisconsin |
 |------------|:------:|:------:|:---------:|:--------:|:-------:|:-----:|:-------:|:-----:|:----------:|:---------:|
