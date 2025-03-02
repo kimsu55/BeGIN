@@ -7,7 +7,7 @@ This is the official repository for BeGIN benchmark.
 
 **BeGIN** offers 10 graph datasets with six different noise types, along with evaluation benchmark for
 various noise-handling strategies, including various GNN architectures, noisy label detection, and noise robust learning.
-To simulate more realistic noise beyond class-dependent assumptions, we first introduce various types of instance-dependent label noise such as Feature, Topology, Confidence and LLM based label noise.
+To simulate more realistic noise beyond class-dependent assumptions, we introduce various types of instance-dependent label noise such as Feature, Topology, Confidence and LLM based label noise.
 
 
 
@@ -31,6 +31,10 @@ This framework allows users to use real-world datasets as follows:
 | **# Edges** | 8,158   | 216,123 | 74,420   | 1,554,578 | 358,574 | 500,939 | 292     | 310   | 394        | 510       |
 
 
+| Category    | Cora-ML | WikiCS | Product-s | Children | History | Photo | Cornell | Texas | Washington | Wisconsin |
+|------------|:------:|:------:|:---------:|:--------:|:-------:|:-----:|:-------:|:-----:|:----------:|:---------:|
+| **# Nodes** | 2,995   | 11,701  | 54,025   | 76,875   | 41,551  | 48,362 | 191     | 187   | 229        | 265       |
+| **# Edges** | 8,158   | 216,123 | 74,420   | 1,554,578 | 358,574 | 500,939 | 292     | 310   | 394        | 510       |
 
 
 
