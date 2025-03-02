@@ -5,15 +5,24 @@ This is the official repository for BeGIN benchmark.
 
 ## What is it?
 
-**BeGIN** offers 
-In the paper we introduce 10 graph datasets with various types of noisy labels: Cora-ML, WikiCS, Product-s, Children, History, Photo, Cornell, Texas, Washington, and Wisconsin.  You can download these datasets using `dataset`.
+**BeGIN** offers 10 graph datasets with six different noise types, along with evaluation benchmark for
+various noise-handling strategies, including various GNN architectures, noisy label detection, and noise robust learning.
+To simulate more realistic noise beyond class-dependent assumptions, we first introduce various types of instance-dependent label noise.
+
+
+| Method | Class-dependent | Instance-dependent |
+|--------|----------------|--------------------|
+|        |                | topology | feature |
+| Type A | ✅             | ✅        | ❌      |
+| Type B | ❌             | ✅        | ✅      |
+| Type C | ✅             | ❌        | ✅      |
 
 
 | Label noise types     | Class-dependent | Topology-dependent | Feature-dependent |
 | --------------------- | --------------- | ------------------ | ----------------- |
 | Uniform               | <p align="center">✔</p>|     | |
 | Pairwise              | <p align="center">✔</p>|     | | 
-| Feature               |                 |  | <p align="center">✔</p>|
+| Feature               |  <p align="center">✔</p>     |  | <p align="center">✔</p>|
 | Topology              | <p align="center">✔</p>|  | <p align="center">✔</p>|
 | Confidence            |<p align="center">✔</p>| <p align="center">✔</p>|<p align="center">✔</p>|
 | LLM                   |   | |<p align="center">✔</p>|
@@ -35,10 +44,10 @@ In the paper we introduce 10 graph datasets with various types of noisy labels: 
 from dataset.BeGINdataset import NoisyDataset
 from dataset.noisify import noisify_dataset
 
-### creat dataset with LLM-based label noise
+### Creat a dataset with LLM-based label noise
 noisy_dataset = NoisyDataset(root='./data', name='cornell')
 
-### generate other types of label noise
+### Generate other types of label noise
 noisy_labels, transition_matrix = noisify_dataset(noisy_dataset, noise_type='topology')
 
 ```
