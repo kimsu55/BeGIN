@@ -35,7 +35,7 @@ This framework allows users to use real-world datasets as follows:
 
 
 ##  Quick Example for BeGIN Dataset 
-The ``NoisyGraphDataset`` class allows you to generate noisy datasets, including LLM-based label noise, for all datasets except 'Products', 'Cora-ML', and 'WikiCS', which have their own specific classes (``NoisyProducts``, ``NoisyCoraML``, and ``NoisyWikiCS``).
+The ``NoisyGraphDataset`` class allows you to generate graph datasets with LLM-based label noise for all datasets except 'Products', 'Cora-ML', and 'WikiCS', which have their own specific classes (``NoisyProducts``, ``NoisyCoraML``, and ``NoisyWikiCS``).
 
 Additionally, you can create label noise from various noise types by setting the noise_type parameter to one of the following:
 ``uniform``,  ``pairwise``, ``feature``, ``topology``, ``confidence``, ``llm``.
