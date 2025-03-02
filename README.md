@@ -33,7 +33,11 @@ This framework allows users to use real-world datasets as follows:
 
 
 
-## Required Dependencies?
+
+##  Quick Example for BeGIN Dataset 
+
+
+#### Required Dependencies?
 - Python 3.8+
 - torch>=2.1.0
 - pyg>=2.5.0
@@ -42,7 +46,7 @@ This framework allows users to use real-world datasets as follows:
 - nltk
 
 
-##  Quick Example for BeGIN Dataset 
+
 
 ```python
 from dataset.BeGINdataset import NoisyDataset
