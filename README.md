@@ -11,6 +11,7 @@ To simulate more realistic noise beyond class-dependent assumptions, we first in
 
 
 
+#### Label noise types
 | Label noise types     | Class-dependent | Instance-dependent (Topology) | Instance-dependent (Feature) |
 | --------------------- | --------------- | ------------------ | ----------------- |
 | Uniform               | <p align="center">✔</p>|     | |
@@ -19,6 +20,17 @@ To simulate more realistic noise beyond class-dependent assumptions, we first in
 | Topology              | <p align="center">✔</p>|  <p align="center">✔</p>| |
 | Confidence            |<p align="center">✔</p>| <p align="center">✔</p>|<p align="center">✔</p>|
 | LLM                   |   | |<p align="center">✔</p>|
+
+
+#### Built-in Datasets
+
+This framework allows users to use real-world datasets as follows:
+  | Category    | Cora-ML | WikiCS | Product-s | Children | History | Photo | Cornell | Texas | Washington | Wisconsin |
+|------------|---------|--------|-----------|----------|---------|-------|---------|-------|------------|-----------|
+| **# Nodes** | 2,995   | 11,701  | 54,025   | 76,875   | 41,551  | 48,362 | 191     | 187   | 229        | 265       |
+| **# Edges** | 8,158   | 216,123 | 74,420   | 1,554,578 | 358,574 | 500,939 | 292     | 310   | 394        | 510       |
+
+
 
 
 ## Required Dependencies?
@@ -30,8 +42,7 @@ To simulate more realistic noise beyond class-dependent assumptions, we first in
 - nltk
 
 
-
-##  Quick Example
+##  Quick Example for BeGIN Dataset 
 
 ```python
 from dataset.BeGINdataset import NoisyDataset
@@ -45,24 +56,3 @@ noisy_labels, transition_matrix = noisify_dataset(noisy_dataset, noise_type='top
 
 ```
 
-## Built-in Datasets
-
-This framework allows users to use real-world datasets as follows:
-  <!-- | Dataset                                                 | # Nodes | # Edges |
-  | ------------------------------------------------------- | ------- | ------- |
-  | [Cora-ML](https://github.com/kimiyoung/planetoid)       | 2,995   | 8,158   |
-  | [WikiCS](https://github.com/kimiyoung/planetoid)        | 11,701  | 216,123  |
-  | [Product-s](https://github.com/kimiyoung/planetoid)     | 54,025   | 74,420   |
-  | [Children](https://openreview.net/forum?id=S1e2agrFvS)  | 76,875   | 1,554,578     |
-  | [History](https://openreview.net/forum?id=S1e2agrFvS)   | 41,551    | 358,574    |
-  | [Photo](https://openreview.net/forum?id=S1e2agrFvS)     | 48,362   | 500,939  |
-  | [Cornell](https://openreview.net/forum?id=S1e2agrFvS)   | 191     | 292    |
-  | [Texas](https://openreview.net/forum?id=S1e2agrFvS)     | 187   | 310  |
-  | [Washington](https://openreview.net/forum?id=S1e2agrFvS) | 229     | 394     |
-  | [Wisconsin](https://openreview.net/forum?id=S1e2agrFvS) | 265     | 510     | -->
-
-
-  | Category    | Cora-ML | WikiCS | Product-s | Children | History | Photo | Cornell | Texas | Washington | Wisconsin |
-|------------|---------|--------|-----------|----------|---------|-------|---------|-------|------------|-----------|
-| **# Nodes** | 2,995   | 11,701  | 54,025   | 76,875   | 41,551  | 48,362 | 191     | 187   | 229        | 265       |
-| **# Edges** | 8,158   | 216,123 | 74,420   | 1,554,578 | 358,574 | 500,939 | 292     | 310   | 394        | 510       |
