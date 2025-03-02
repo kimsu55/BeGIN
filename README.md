@@ -11,7 +11,7 @@ To simulate more realistic noise beyond class-dependent assumptions, we first in
 
 
 
-#### Label noise types
+#### Label Noise Types
 | Label noise types     | Class-dependent | Instance-dependent (Topology) | Instance-dependent (Feature) |
 | --------------------- | --------------- | ------------------ | ----------------- |
 | Uniform               | <p align="center">✔</p>|     | |
