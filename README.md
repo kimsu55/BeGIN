@@ -34,9 +34,12 @@ This framework allows users to use real-world datasets as follows:
 
 
 ##  Quick Example for BeGIN Dataset 
+The ``NoisyDataset`` class allows you to generate noisy datasets, including LLM-based label noise, for all datasets except 'Products', 'Cora-ML', and 'WikiCS', which have their own specific classes (``NoisyProducts``, ``NoisyCoraML``, and ``NoisyWikiCS``).
 
+Additionally, you can create label noise from various noise types by setting the noise_type parameter to one of the following:
+``uniform``, ``clean``, ``pairwise``, ``feature``, ``topology``, ``confidence``, ``llm``.
 
-#### Required Dependencies?
+#### Required Dependencies
 - Python 3.8+
 - torch>=2.1.0, torch_scatter
 - pyg>=2.5.0
@@ -46,14 +49,14 @@ This framework allows users to use real-world datasets as follows:
 
 
 ```python
-from dataset.BeGINdataset import NoisyDataset
+from dataset.BeGINdataset import NoisyDataset, NoisyProducts, NoisyCoraML, NoisyWikiCS
 from dataset.noisify import noisify_dataset
 
 ### Creat a dataset with LLM-based label noise
 noisy_dataset = NoisyDataset(root='./data', name='cornell')
 
 ### Generate other types of label noise
-noisy_labels, transition_matrix = noisify_dataset(noisy_dataset, noise_type='topology')
+noisy_label, transition_matrix = noisify_dataset(noisy_dataset, noise_type='topology')
 
 ```
 
