@@ -10,15 +10,8 @@ various noise-handling strategies, including various GNN architectures, noisy la
 To simulate more realistic noise beyond class-dependent assumptions, we first introduce various types of instance-dependent label noise.
 
 
-| Method | Class-dependent | Instance-dependent |
-|--------|----------------|--------------------|
-|        |                | topology | feature |
-| Type A | ✅             | ✅        | ❌      |
-| Type B | ❌             | ✅        | ✅      |
-| Type C | ✅             | ❌        | ✅      |
 
-
-| Label noise types     | Class-dependent | Topology-dependent | Feature-dependent |
+| Label noise types     | Class-dependent | Instance-dependent (Topology) | Instance-dependent (Feature) |
 | --------------------- | --------------- | ------------------ | ----------------- |
 | Uniform               | <p align="center">✔</p>|     | |
 | Pairwise              | <p align="center">✔</p>|     | | 
