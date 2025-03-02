@@ -15,7 +15,7 @@ In the paper we introduce 10 graph datasets with various types of noisy labels: 
 | Pairwise              | ✅
 | Feature               | <span style="color:green">✔ </span>
 | Topology              | ✔
-| Confidence
+| Confidence            |<p align="center">✔</p>|
 | LLM
 
 
