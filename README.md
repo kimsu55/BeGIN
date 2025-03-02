@@ -7,7 +7,7 @@ This is the official repository for BeGIN benchmark.
 
 **BeGIN** offers 10 graph datasets with six different noise types, along with evaluation benchmark for
 various noise-handling strategies, including various GNN architectures, noisy label detection, and noise robust learning.
-To simulate more realistic noise beyond class-dependent assumptions, we first introduce various types of instance-dependent label noise.
+To simulate more realistic noise beyond class-dependent assumptions, we first introduce various types of instance-dependent label noise such as Feature, Topology, Confidence and LLM based label noise.
 
 
 
