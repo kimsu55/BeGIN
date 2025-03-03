@@ -80,7 +80,7 @@ BeGIN is designed to benchmark and advance learning under label noise in graph d
 - Pre-configured training pipelines that allow users to efficiently train and compare multiple noise-robust models.
 - Extensive configuration files to enable flexible experimentation with different noise-handling techniques and architectures.
 
-###  Quick Example using GNNs 
+####  Quick Example using GNNs 
 BeGIN provides a node classifier to train and evaluate graph neural networks (GNNs) on noisy datasets.
 It enables users to analyze the impact of various label noise types on node classification performance.
 The parameters are the same as those mentioned above.
@@ -90,7 +90,7 @@ The parameters are the same as those mentioned above.
 python train_nodeclassifier.py  --data cora_ml --noise_type llm  --method gcn --device cuda
 ```
 
-### Additional Models using NoisyGL 
+#### Additional Models using NoisyGL 
 To further strengthen our benchmark, we integrate NoisyGL ([NoisyGL: A Comprehensive Benchmark for Graph Neural Networks under Label Noise](https://arxiv.org/abs/2406.04299)) as a Git submodule. This incorporation expands BeGIN by providing access to a diverse suite of state-of-the-art noise-robust GNN models, enabling more comprehensive and scalable evaluations.
 
 
