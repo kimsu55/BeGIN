@@ -74,7 +74,7 @@ python train_detector.py  --data cora_ml --noise_type llm  --method gcn --device
 ```
 
 
-## Noisy Robust Learning  
+## Noise Robust Learning  
 BeGIN is designed to benchmark and advance learning under label noise in graph datasets. Our contribution includes:
 -  A systematic evaluation framework for studying the impact of instance-dependent label noise on noise robust models.
 - Pre-configured training pipelines that allow users to efficiently train and compare multiple noise-robust models.
