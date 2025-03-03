@@ -92,11 +92,9 @@ python train_nodeclassifier.py  --data cora_ml --noise_type llm  --method gcn --
 
 #### (2) Noise Robust Models  
 To further strengthen our benchmark, we integrate NoisyGL ([NoisyGL: A Comprehensive Benchmark for Graph Neural Networks under Label Noise](https://arxiv.org/abs/2406.04299)) as a Git submodule. This incorporation expands BeGIN by providing access to a diverse suite of state-of-the-art noise-robust GNN models, enabling more comprehensive and scalable evaluations.
-
-
 To ensure that NoisyGL is properly initialized before running experiments:
 ```bash
 cd BeGIN
 git submodule update --init --recursive
 ```
-This command pulls the latest version of NoisyGL, allowing seamless integration with BeGIN for evaluating noise-robust GNN architectures.
+<!-- This command pulls the latest version of NoisyGL, allowing seamless integration with BeGIN for evaluating noise-robust GNN architectures. -->
