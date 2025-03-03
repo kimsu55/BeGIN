@@ -1,10 +1,7 @@
-
 import argparse
-
 import numpy as np
 from sklearn.mixture import GaussianMixture
 from sklearn.metrics import roc_auc_score
-
 from dataset.utils import setup_seed
 from dataset.loader import NoisyData
 from models.gnn_predictor import Detector
@@ -13,7 +10,6 @@ from models.tools import load_conf
 
 def load_args():
     parser = argparse.ArgumentParser()
-
     parser.add_argument('--data', type=str,
                         default='cornell',
                         choices=['cora_ml', 'wikics',  'products', 'children','history', 'photo',  'cornell', 'texas','washington', 'wisconsin'], 
@@ -23,14 +19,10 @@ def load_args():
                         choices=['clean', 'uniform', 'pair', 'llm', 'topology', 'feature', 'confidence'], help='Type of label noise')
     parser.add_argument('--noise_rate', type=float,  default=None, help='Label noise rate, If set to None, the noise rate will be automatically derived from the LLM-based label noise in the dataset.')
     parser.add_argument('--method', type=str, default='sage', choices=['gcn', 'sage', 'gin', 'mlp', 'gat'], help="Select methods")
-    
-    
     parser.add_argument('--runs', type=int, default=10)
     parser.add_argument('--start_seed', type=int, default=0)
     parser.add_argument('--data_root', type=str, default='./data', help='Path to dataset')
     parser.add_argument('--device', type=str, default='cuda', help='Device')
-
-
     args = parser.parse_args()
     return args
 
@@ -50,23 +42,19 @@ def run_GMM(losses, is_corrupted, random_state):
     return roc_auc * 100
 
 
-
 def run_single_exp(dataset, args):
 
     model_conf = load_conf(None, args.method, dataset.name)
     model_conf.training['n_epochs'] = 100
     
     predictor = Detector(model_conf, dataset, args.method, args.device, args.seed)
-    loss_traj = predictor.train()
-    
+    loss_traj = predictor.train()    
     is_corrupted = (dataset.noisy_label != dataset.labels).cpu().numpy().astype(int)
-
 
     roc_auc_list = []
     for epoch in range(loss_traj.shape[1]):
         losses = loss_traj[:, epoch]
         roc = run_GMM(losses, is_corrupted, args.seed)
-        
         roc_auc_list.append(roc)
     
     best_epoch = np.argmax(roc_auc_list)
@@ -81,13 +69,11 @@ def run_single_exp(dataset, args):
 if __name__ == '__main__':
 
     args = load_args()
-
     data_conf = load_conf('./config/datasets/' + args.data + '.yaml')
     
     best_epoch_list = []
     best_roc_list = []
     roc_mean_list = []
-
     for run, seed in enumerate(range(args.start_seed, args.runs + args.start_seed)):
         args.seed = seed
         setup_seed(args.seed)
@@ -103,7 +89,6 @@ if __name__ == '__main__':
     best_epoch_list = np.array(best_epoch_list)
     best_roc_list = np.array(best_roc_list)
     roc_mean_list = np.array(roc_mean_list)
-
 
     print(f'Avg Best Epoch: {best_epoch_list.mean():.2f}, Avg Best ROCAUC: {best_roc_list.mean():.2f}, Avg Mean ROCAUC: {roc_mean_list.mean():.2f}')
 

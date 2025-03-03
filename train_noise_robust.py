@@ -1,16 +1,10 @@
-
 import argparse
-
 import numpy as np
-
 from dataset.utils import setup_seed
 from dataset.loader import NoisyData
 from models.tools import load_conf
-
 import sys
 import os
-
-
 # Dynamically add NoisyGL to Python's path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "NoisyGL")))
 from NoisyGL.predictor.LCAT_Predictor import lcat_Predictor
@@ -36,10 +30,8 @@ import warnings
 warnings.filterwarnings("ignore", category=UserWarning)  # Ignores only UserWarnings
 
 
-
 def load_args():
     parser = argparse.ArgumentParser()
-
     parser.add_argument('--data', type=str,
                         default='cornell',
                         choices=['cora_ml', 'wikics',  'products', 'children','history', 'photo',  'cornell', 'texas','washington', 'wisconsin'], 
@@ -49,26 +41,17 @@ def load_args():
                         choices=['clean', 'uniform', 'pair', 'llm', 'topology', 'feature', 'confidence'], help='Type of label noise')
     parser.add_argument('--noise_rate', type=float,  default=None, help='Label noise rate, If set to None, the noise rate will be automatically derived from the LLM-based label noise in the dataset.')
     parser.add_argument('--method', type=str, default='apl', choices=['lcat', 'smodel','forward', 'backward', 'coteaching', 'sce', 'jocor',  'apl',  'dgnn','cp',  'nrgnn', 'rtgnn','clnode',  'cgnn', 'crgnn',   'pignn','rncgln', 'r2lp'], help="Select methods")
-    
-    
     parser.add_argument('--runs', type=int, default=10)
     parser.add_argument('--start_seed', type=int, default=0)
     parser.add_argument('--data_root', type=str, default='./data', help='Path to dataset')
     parser.add_argument('--device', type=str, default='cuda', help='Device')
-
-
     args = parser.parse_args()
     return args
-
-
-
 
 
 def run_single_exp(dataset, args):
 
     model_conf = load_conf(None, args.method, dataset.name)
-
-
     model_conf.model['n_feat'] = dataset.dim_feats
     model_conf.model['n_classes'] = 1 if dataset.n_classes <=2 else dataset.n_classes
     model_conf.training['debug'] = False
@@ -76,20 +59,14 @@ def run_single_exp(dataset, args):
     predictor = eval(args.method + '_Predictor')(model_conf, dataset, args.device)
     results = predictor.train()
 
-
     return results
-
-
-
 
 
 if __name__ == '__main__':
 
     args = load_args()
-
     data_conf = load_conf('./config/datasets/' + args.data + '.yaml')
     
-
     train_acc = []
     valid_acc = []
     test_acc = []
