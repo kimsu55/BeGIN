@@ -56,13 +56,11 @@ def run_single_exp(dataset, args):
         losses = loss_traj[:, epoch]
         roc = run_GMM(losses, is_corrupted, args.seed)
         roc_auc_list.append(roc)
-    
     best_epoch = np.argmax(roc_auc_list)
     best_roc = roc_auc_list[best_epoch]
 
     avg_loss = np.mean(loss_traj, axis=1)
     roc_mean = run_GMM(avg_loss, is_corrupted, args.seed)
-
     return best_epoch, best_roc, roc_mean
 
 
@@ -77,15 +75,13 @@ if __name__ == '__main__':
     for run, seed in enumerate(range(args.start_seed, args.runs + args.start_seed)):
         args.seed = seed
         setup_seed(args.seed)
-
         dataset = NoisyData(name=args.data, conf=data_conf, noise_type=args.noise_type, noise_rate=args.noise_rate, seed=args.seed, path=args.data_root, device=args.device)
-
         best_epoch, best_roc, roc_mean = run_single_exp(dataset, args)
+
         best_epoch_list.append(best_epoch)
         best_roc_list.append(best_roc)
         roc_mean_list.append(roc_mean)
         print(f'Run {run+1}/{args.runs} finished: Best Epoch: {best_epoch}, Best ROCAUC: {best_roc:.2f}, Mean  ROCAUC: {roc_mean:.2f}')
-
     best_epoch_list = np.array(best_epoch_list)
     best_roc_list = np.array(best_roc_list)
     roc_mean_list = np.array(roc_mean_list)

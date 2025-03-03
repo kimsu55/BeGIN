@@ -50,15 +50,13 @@ def load_args():
 
 
 def run_single_exp(dataset, args):
-
     model_conf = load_conf(None, args.method, dataset.name)
     model_conf.model['n_feat'] = dataset.dim_feats
     model_conf.model['n_classes'] = 1 if dataset.n_classes <=2 else dataset.n_classes
     model_conf.training['debug'] = False
-
+    
     predictor = eval(args.method + '_Predictor')(model_conf, dataset, args.device)
     results = predictor.train()
-
     return results
 
 
@@ -66,24 +64,19 @@ if __name__ == '__main__':
 
     args = load_args()
     data_conf = load_conf('./config/datasets/' + args.data + '.yaml')
-    
     train_acc = []
     valid_acc = []
     test_acc = []
-
     for run, seed in enumerate(range(args.start_seed, args.runs + args.start_seed)):
         args.seed = seed
         setup_seed(args.seed)
-
         dataset = NoisyData(name=args.data, conf=data_conf, noise_type=args.noise_type, noise_rate=args.noise_rate, seed=args.seed, path=args.data_root, device=args.device)
-        
         results = run_single_exp(dataset, args)
         
         train_acc.append(results['train']*100)
         valid_acc.append(results['valid']*100)
         test_acc.append(results['test']*100)
         print(f'Run {run+1}/{args.runs} finished: Train Acc: {results["train"]*100:.2f}, Valid Acc: {results["valid"]*100:.2f}, Test Acc: {results["test"]*100:.2f}')
-    
     print(f'Avg Train Acc: {np.mean(train_acc):.2f}, Avg Valid Acc: {np.mean(valid_acc):.2f}, Avg Test Acc: {np.mean(test_acc):.2f}')
 
 
