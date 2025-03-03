@@ -70,3 +70,14 @@ The following command trains a noisy label detection model on the Cora-ML datase
 
 python train_detector.py  --data cora_ml --noise_type llm  --method gcn --device cuda
 ```
+
+
+##  Quick Example for Node classifier 
+BeGIN provides a node classifier to train and evaluate graph neural networks (GNNs) on noisy datasets.
+This allows users to assess the impact of different label noise types on node classification performance.
+The following command trains a GNN-based node classifier on the Cora-ML dataset with LLM-based label noise, using Graph Convolutional Networks (GCN):
+
+```python
+
+python train_nodeclassifier.py  --data cora_ml --noise_type llm  --method gcn --device cuda
+```
