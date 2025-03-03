@@ -34,13 +34,7 @@ This framework allows users to use real-world datasets as follows:
 
 
 
-##  Quick Example for BeGIN Dataset 
-The ``NoisyGraphDataset`` class allows you to generate a graph dataset with LLM-based label noise for all datasets except 'Products', 'Cora-ML', and 'WikiCS', which have their own specific classes (``NoisyProducts``, ``NoisyCoraML``, and ``NoisyWikiCS``).
-
-Additionally, you can create label noise from various noise types by setting the noise_type parameter to one of the following:
-``uniform``,  ``pairwise``, ``feature``, ``topology``, ``confidence``, ``llm``.
-
-#### Required Dependencies
+## Required Dependencies
 - Python 3.8+
 - torch>=2.1.0, torch_scatter
 - pyg>=2.5.0
@@ -48,6 +42,12 @@ Additionally, you can create label noise from various noise types by setting the
 - nltk
 - numpy, scikit-learn, pandas, tqdm, ruamel.yaml
 
+
+##  Quick Example for BeGIN Dataset 
+The ``NoisyGraphDataset`` class allows you to generate a graph dataset with LLM-based label noise for all datasets except 'Products', 'Cora-ML', and 'WikiCS', which have their own specific classes (``NoisyProducts``, ``NoisyCoraML``, and ``NoisyWikiCS``).
+
+Additionally, you can create label noise from various noise types by setting the noise_type parameter to one of the following:
+``uniform``,  ``pairwise``, ``feature``, ``topology``, ``confidence``, ``llm``.
 
 ```python
 from dataset.BeGINdataset import NoisyGraphDataset, NoisyProducts, NoisyCoraML, NoisyWikiCS
