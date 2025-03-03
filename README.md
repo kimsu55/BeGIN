@@ -77,7 +77,7 @@ python train_detector.py  --data cora_ml --noise_type llm  --method gcn --device
 ##  Quick Example for Node classifier 
 BeGIN provides a node classifier to train and evaluate graph neural networks (GNNs) on noisy datasets.
 It enables users to analyze the impact of various label noise types on node classification performance.
-The parameters for this classifier are the same as those mentioned above.
+The parameters are the same as those mentioned above.
 
 ```python
 
@@ -85,9 +85,10 @@ python train_nodeclassifier.py  --data cora_ml --noise_type llm  --method gcn --
 ```
 
 ## Additional Models for Node classifier using NoisyGL 
-We incorporate **NoisyGL** ([NoisyGL: A Comprehensive Benchmark for Graph Neural Networks under Label Noise](https://github.com/eaglelab-zju/NoisyGL.git)) as a **submodule** to explore more **noisy-robust models** for training on noisy graph datasets.
-
+We integrate **NoisyGL** ([NoisyGL: A Comprehensive Benchmark for Graph Neural Networks under Label Noise](https://arxiv.org/abs/2406.04299)) as a **Git submodule** to explore more **noisy-robust models** for training on noisy graph datasets.
+To run multiple models using NoisyGL, ensure that the submodule is properly initialized:
 ```bash
 cd BeGIN
-git submodule add https://github.com/eaglelab-zju/NoisyGL.git NoisyGL
+git submodule update --init --recursive
 ```
+This command pulls the latest version of NoisyGL, allowing seamless integration with BeGIN for evaluating noise-robust GNN architectures.
