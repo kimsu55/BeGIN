@@ -43,7 +43,7 @@ This framework allows users to use real-world datasets as follows:
 - numpy, scikit-learn, pandas, tqdm, ruamel.yaml
 
 
-##  (1) Quick Example for BeGIN Dataset 
+##  Quick Example for BeGIN Dataset 
 The ``NoisyGraphDataset`` class allows you to generate a graph dataset with LLM-based label noise for all datasets except 'Products', 'Cora-ML', and 'WikiCS', which have their own specific classes (``NoisyProducts``, ``NoisyCoraML``, and ``NoisyWikiCS``).
 
 Additionally, you can create label noise from various noise types by setting the noise_type parameter to one of the following:
@@ -62,7 +62,7 @@ noisy_label, transition_matrix = noisify_dataset(noisy_dataset, noise_type='topo
 ```
 
 
-##  (2) Noisy label detector 
+##  Noisy label detector 
 BeGIN provides a noisy label detector to help identify mislabeled data in graph datasets.
 The following command trains a noisy label detection model on the Cora-ML dataset using Graph Convolutional Networks (GCN) with LLM-based label noise.
 The ``data`` parameter must be one of the following: ``cora_ml``, ``wikics``,  ``products``, ``children``,``history``, ``photo``,  ``cornell``, ``texas``, ``washington``, ``wisconsin``.
@@ -80,7 +80,7 @@ BeGIN is designed to benchmark and advance learning under label noise in graph d
 - Pre-configured training pipelines that allow users to efficiently train and compare multiple noise-robust models.
 - Extensive configuration files to enable flexible experimentation with different noise-handling techniques and architectures.
 
-####  Quick Example of Noisy Robust Learning using GNNs 
+####  (1) Learning with Label Noise using GNNs 
 BeGIN provides a node classifier to train and evaluate graph neural networks (GNNs) on noisy datasets.
 It enables users to analyze the impact of various label noise types on node classification performance.
 The parameters are the same as those mentioned above.
@@ -90,7 +90,7 @@ The parameters are the same as those mentioned above.
 python train_nodeclassifier.py  --data cora_ml --noise_type llm  --method gcn --device cuda
 ```
 
-#### Additional Models using NoisyGL 
+#### (2) Noise Robust Models  
 To further strengthen our benchmark, we integrate NoisyGL ([NoisyGL: A Comprehensive Benchmark for Graph Neural Networks under Label Noise](https://arxiv.org/abs/2406.04299)) as a Git submodule. This incorporation expands BeGIN by providing access to a diverse suite of state-of-the-art noise-robust GNN models, enabling more comprehensive and scalable evaluations.
 
 
