@@ -1,0 +1,29 @@
+analysis:
+  flag: false
+  project: gnn-with-label-noise
+  save_graph: false
+dataset:
+  sparse: true
+model:
+  T: 150
+  _name: wandb.config
+  act: F.relu
+  alpha: 1
+  dropout: 0.1
+  input_layer: false
+  lambda: 0.25
+  method: clnode
+  n_emb: 16
+  n_embedding: 16
+  n_hidden: 64
+  n_layer: 2
+  norm_info: null
+  output_layer: false
+  scheduler: geom
+training:
+  criterion: metric
+  lr: 0.005
+  n_epochs: 500
+  n_pre_epochs: 500
+  patience: 50
+  weight_decay: 0.005
