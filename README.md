@@ -62,7 +62,7 @@ noisy_label, transition_matrix = noisify_dataset(noisy_dataset, noise_type='topo
 ```
 
 
-##  Quick Example for Noisy label detector 
+##  Noisy label detector 
 BeGIN provides a noisy label detector to help identify mislabeled data in graph datasets.
 The following command trains a noisy label detection model on the Cora-ML dataset using Graph Convolutional Networks (GCN) with LLM-based label noise.
 The ``data`` parameter must be one of the following: ``cora_ml``, ``wikics``,  ``products``, ``children``,``history``, ``photo``,  ``cornell``, ``texas``, ``washington``, ``wisconsin``.
