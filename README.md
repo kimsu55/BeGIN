@@ -65,6 +65,8 @@ noisy_label, transition_matrix = noisify_dataset(noisy_dataset, noise_type='topo
 ##  Quick Example for Noisy label detector 
 BeGIN provides a noisy label detector to help identify mislabeled data in graph datasets.
 The following command trains a noisy label detection model on the Cora-ML dataset using Graph Convolutional Networks (GCN) with LLM-based label noise.
+The ``data`` parameter must be one of the following:: ``cora_ml``, ``wikics``,  ``products``, ``children``,``history``, ``photo``,  ``cornell``, ``texas``, ``washington``, ``wisconsin``.
+The ``method`` parameter must be one of the following model architectures:: ``gcn``,  ``gin``, ``gat``, ``sage``, ``mlp``.
 
 ```python
 
@@ -74,10 +76,12 @@ python train_detector.py  --data cora_ml --noise_type llm  --method gcn --device
 
 ##  Quick Example for Node classifier 
 BeGIN provides a node classifier to train and evaluate graph neural networks (GNNs) on noisy datasets.
-This allows users to assess the impact of different label noise types on node classification performance.
-The following command trains a GNN-based node classifier on the Cora-ML dataset with LLM-based label noise, using Graph Convolutional Networks (GCN):
+It enables users to analyze the impact of various label noise types on node classification performance.
+The parameters for this classifier are the same as those mentioned above.
 
 ```python
 
 python train_nodeclassifier.py  --data cora_ml --noise_type llm  --method gcn --device cuda
 ```
+
+
