@@ -90,10 +90,10 @@ The parameters are the same as those mentioned above.
 python train_gnns.py  --data cora_ml --noise_type llm  --method gcn --device cuda
 ```
 
-#### (2) Noise-Robust Models  
+#### (2) Noise Robust Models  
 To further strengthen our benchmark, we integrate NoisyGL ([NoisyGL: A Comprehensive Benchmark for Graph Neural Networks under Label Noise](https://arxiv.org/abs/2406.04299)) as a Git submodule. 
-We greatly appreciate the work done in NoisyGL, which provides a well-structured and comprehensive framework for evaluating noise-robust models.
-This incorporation expands BeGIN by providing access to a diverse suite of state-of-the-art noise-robust models, enabling more comprehensive and scalable evaluations.
+We greatly appreciate the work done in NoisyGL, which provides a well-structured and comprehensive framework for evaluating noise robust models.
+This incorporation expands BeGIN by providing access to a diverse suite of state-of-the-art noise robust models, enabling more comprehensive and scalable evaluations.
 
 To ensure that NoisyGL is properly initialized before running experiments:
 ```bash
