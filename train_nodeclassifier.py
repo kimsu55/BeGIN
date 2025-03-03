@@ -36,7 +36,7 @@ def load_args():
 
 
 
-def run_single_exp(dataset, args, debug=True):
+def run_single_exp(dataset, args):
 
     model_conf = load_conf(None, args.method, dataset.name)
 
@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
         dataset = Dataset(name=args.data, conf=data_conf, noise_type=args.noise_type, path=args.data_root, device=args.device)
 
-        results = run_single_exp(dataset, args, debug=False)
+        results = run_single_exp(dataset, args)
         print(results)
 
 

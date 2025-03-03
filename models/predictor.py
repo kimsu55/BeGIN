@@ -8,11 +8,6 @@ import torch.nn.functional as F
 from models.GNNs import GCN, GraphSAGE, MLP, GAT, GIN
 from models.tools import Recorder, accuracy
 
-
-
-
-
-
 class BasePredictor:
     def __init__(self, conf, dataset, method,  device='cuda:0', seed=0):
         super(BasePredictor, self).__init__()
@@ -80,8 +75,6 @@ class BasePredictor:
                                         weight_decay=self.conf.training['weight_decay'])
         else:
             raise NotImplementedError
-
-
 
 
 class Detector(BasePredictor):
