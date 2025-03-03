@@ -80,7 +80,7 @@ BeGIN is designed to benchmark and advance learning under label noise in graph d
 - Pre-configured training pipelines that allow users to efficiently train and compare multiple noise-robust models.
 - Extensive configuration files to enable flexible experimentation with different noise-handling techniques and architectures.
 
-####  Quick Example using GNNs 
+####  Quick Example of Noisy Robust Learning using GNNs 
 BeGIN provides a node classifier to train and evaluate graph neural networks (GNNs) on noisy datasets.
 It enables users to analyze the impact of various label noise types on node classification performance.
 The parameters are the same as those mentioned above.
