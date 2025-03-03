@@ -100,4 +100,14 @@ To ensure that NoisyGL is properly initialized before running experiments:
 cd BeGIN
 git submodule update --init --recursive
 ```
-<!-- This command pulls the latest version of NoisyGL, allowing seamless integration with BeGIN for evaluating noise-robust GNN architectures. -->
+
+The following command trains a noise robust model, [CLNode: Curriculum Learning for Node Classification](https://dl.acm.org/doi/10.1145/3539597.3570385), on the Cora-ML dataset with LLM-based label noise.
+The ``method`` parameter must be one of the following model architectures: ``lcat``, ``smodel``, ``forward``, ``backward``, ``coteaching``, ``sce``, ``jocor``,  ``apl``,  ``dgnn``, ``cp``,  ``nrgnn``, ``rtgnn``, ``clnode``,  ``cgnn``, ``crgnn``, ``pignn``, ``rncgln``, ``r2lp``.
+
+```python
+
+python train_noise_robust.py  --data cora_ml --noise_type llm  --method clnode --device cuda
+```
+
+
+
