@@ -80,6 +80,7 @@ class NoisyGraphDataset(InMemoryDataset):
         elif self.name in ['cornell', 'texas', 'washington', 'wisconsin']: 
             text = df['text'].to_numpy()
             feats = generate_node_features(text, num_bags=1703)
+            feats = torch.tensor(feats, dtype=torch.float)
 
         df_n = pd.read_csv(self.raw_paths[1])
         true_labels = torch.tensor(df_n['True_labels'].to_numpy(), dtype=torch.long)

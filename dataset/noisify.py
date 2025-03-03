@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-import random
+
 import copy
 from numpy.testing import assert_array_almost_equal
 import torch.nn.functional as F
@@ -8,28 +8,7 @@ import torch_geometric.transforms as T
 from tqdm import tqdm
 from torch_scatter import scatter_add
 from torch_geometric.utils import remove_self_loops, to_torch_csr_tensor
-
-def setup_seed(seed):
-    '''
-    Setup random seed so that the experimental results are reproducible
-    Parameters
-    ----------
-    seed : int
-        random seed for torch, numpy and random
-
-    Returns
-    -------
-    None
-    '''
-    torch.manual_seed(seed)
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed(seed)
-        torch.cuda.manual_seed_all(seed)
-    np.random.seed(seed)
-    random.seed(seed)
-    torch.backends.cudnn.benchmark = False
-    torch.backends.cudnn.deterministic = True
-
+from dataset.utils import setup_seed
 
 
 

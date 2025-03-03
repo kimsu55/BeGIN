@@ -1,0 +1,20 @@
+analysis:
+  flag: false
+  project: gnn-with-label-noise
+  save_graph: false
+dataset:
+  sparse: true
+model:
+  _name: wandb.config
+  dropout: 0.9
+  method: gin
+  mlp_layers: 1
+  n_hidden: 128
+  n_layer: 3
+  train_eps: true
+training:
+  criterion: metric
+  lr: 5e-05
+  n_epochs: 200
+  patience: null
+  weight_decay: 0.0005
