@@ -6,8 +6,8 @@ from sklearn.mixture import GaussianMixture
 from sklearn.metrics import roc_auc_score
 
 from dataset.utils import setup_seed
-from dataset.loader import Dataset
-from models.predictor import Detector
+from dataset.loader import NoisyData
+from models.gnn_predictor import Detector
 from models.tools import load_conf
 
 
@@ -25,7 +25,7 @@ def load_args():
     parser.add_argument('--method', type=str, default='sage', choices=['gcn', 'sage', 'gin', 'mlp', 'gat'], help="Select methods")
     
     
-    parser.add_argument('--runs', type=int, default=2)
+    parser.add_argument('--runs', type=int, default=10)
     parser.add_argument('--start_seed', type=int, default=0)
     parser.add_argument('--data_root', type=str, default='./data', help='Path to dataset')
     parser.add_argument('--device', type=str, default='cuda', help='Device')
@@ -59,7 +59,7 @@ def run_single_exp(dataset, args):
     predictor = Detector(model_conf, dataset, args.method, args.device, args.seed)
     loss_traj = predictor.train()
     
-    is_corrupted = (dataset.noisy_labels != dataset.labels).cpu().numpy().astype(int)
+    is_corrupted = (dataset.noisy_label != dataset.labels).cpu().numpy().astype(int)
 
 
     roc_auc_list = []
@@ -92,7 +92,7 @@ if __name__ == '__main__':
         args.seed = seed
         setup_seed(args.seed)
 
-        dataset = Dataset(name=args.data, conf=data_conf, noise_type=args.noise_type, path=args.data_root, device=args.device)
+        dataset = NoisyData(name=args.data, conf=data_conf, noise_type=args.noise_type, noise_rate=args.noise_rate, seed=args.seed, path=args.data_root, device=args.device)
 
         best_epoch, best_roc, roc_mean = run_single_exp(dataset, args)
         best_epoch_list.append(best_epoch)

@@ -25,11 +25,11 @@ class BasePredictor:
         '''
         self.loss_fn = F.binary_cross_entropy_with_logits if dataset.n_classes == 1 else F.cross_entropy
         # self.edge_index = dataset.adj.indices()
-        self.adj = dataset.adj if self.conf.dataset['sparse'] else dataset.adj.to_dense()
+        self.adj = dataset.adj_csr if self.conf.dataset['sparse'] else dataset.adj.to_dense()
         self.feats = dataset.feats
         self.n_nodes = dataset.n_nodes
         self.n_classes = dataset.n_classes
-        self.noisy_labels = dataset.noisy_labels
+        self.noisy_label = dataset.noisy_label
         self.conf.model['n_feat'] = dataset.dim_feats
         self.conf.model['n_classes'] =  dataset.n_classes
 
@@ -95,7 +95,7 @@ class Detector(BasePredictor):
                 output = self.model(features)
             else:
                 output = self.model(features, adj)
-            loss_train = self.loss_fn(output[node_indices], self.noisy_labels[node_indices])
+            loss_train = self.loss_fn(output[node_indices], self.noisy_label[node_indices])
 
             loss_train.backward()
             self.optim.step()
@@ -106,7 +106,7 @@ class Detector(BasePredictor):
                     output = self.model(features)
                 else:
                     output = self.model(features, adj)
-                loss_per_node = F.cross_entropy(output, self.noisy_labels, reduction='none')
+                loss_per_node = F.cross_entropy(output, self.noisy_label, reduction='none')
                 self.loss_trajectories[:, epoch] = loss_per_node.cpu().numpy()
 
         return self.loss_trajectories
@@ -162,12 +162,12 @@ class NodeClassifier(BasePredictor):
             self.optim.zero_grad()
             features, adj = self.feats, self.adj
             # forward and backward
-            output, loss_train, acc_train = self.get_prediction(features, adj, self.noisy_labels, self.train_mask)
+            output, loss_train, acc_train = self.get_prediction(features, adj, self.noisy_label, self.train_mask)
             loss_train.backward()
             self.optim.step()
 
             # Evaluate
-            loss_val, acc_val = self.evaluate(self.noisy_labels, self.val_mask)
+            loss_val, acc_val = self.evaluate(self.noisy_label, self.val_mask)
             flag, flag_earlystop = self.recoder.add(loss_val, acc_val)
             if flag:
                 self.best_val_loss = loss_val

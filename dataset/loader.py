@@ -14,7 +14,7 @@ from dataset.noisify import noisify_dataset
 
 
 
-class Dataset:
+class NoisyData:
     '''
     Dataset Class.
     This class loads, preprocesses and splits various datasets.
@@ -33,11 +33,13 @@ class Dataset:
         Whether to print statistics.
     '''
 
-    def __init__(self, name,  conf, noise_type,  path='./data/',  device='cuda:0',  verbose=False):
+    def __init__(self, name,  conf, noise_type, noise_rate,  seed=0, path='./data/',  device='cuda:0',  verbose=False):
         self.name = name
         self.path = path
         self.noise_type = noise_type
+        self.noise_rate = noise_rate
         self.device = torch.device(device)
+        self.seed = seed
         
         self.split_type = conf.split['split_type']
         self.train_size = conf.split['train_size']
@@ -88,10 +90,10 @@ class Dataset:
             self.feats = normalize(self.feats, style='row')
         
         self.adj = self.adj.coalesce()
-        self.adj = self.adj.to_sparse_csr()
+        self.adj_csr = self.adj.to_sparse_csr()
 
-        self.noisy_labels, tm = noisify_dataset(dataset, self.noise_type)
-        self.noisy_labels = self.noisy_labels.to(self.device)
+        self.noisy_label, tm = noisify_dataset(dataset, self.noise_type, self.noise_rate, random_seed=self.seed)
+        self.noisy_label = self.noisy_label.to(self.device)
     
     
     

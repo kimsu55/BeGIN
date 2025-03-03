@@ -4,8 +4,8 @@ import argparse
 import numpy as np
 
 from dataset.utils import setup_seed
-from dataset.loader import Dataset
-from models.predictor import NodeClassifier
+from dataset.loader import NoisyData
+from models.gnn_predictor import NodeClassifier
 from models.tools import load_conf
 
 
@@ -23,7 +23,7 @@ def load_args():
     parser.add_argument('--method', type=str, default='sage', choices=['gcn', 'sage', 'gin', 'mlp', 'gat'], help="Select methods")
     
     
-    parser.add_argument('--runs', type=int, default=2)
+    parser.add_argument('--runs', type=int, default=10)
     parser.add_argument('--start_seed', type=int, default=0)
     parser.add_argument('--data_root', type=str, default='./data', help='Path to dataset')
     parser.add_argument('--device', type=str, default='cuda', help='Device')
@@ -63,7 +63,7 @@ if __name__ == '__main__':
         args.seed = seed
         setup_seed(args.seed)
 
-        dataset = Dataset(name=args.data, conf=data_conf, noise_type=args.noise_type, path=args.data_root, device=args.device)
+        dataset = NoisyData(name=args.data, conf=data_conf, noise_type=args.noise_type, noise_rate=args.noise_rate, seed=args.seed, path=args.data_root, device=args.device)
 
         results = run_single_exp(dataset, args)
         
