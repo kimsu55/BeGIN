@@ -43,7 +43,7 @@ This framework allows users to use real-world datasets as follows:
 - numpy, scikit-learn, pandas, tqdm, ruamel.yaml
 
 
-##  Quick Example for BeGIN Dataset 
+##  (1) Quick Example for BeGIN Dataset 
 The ``NoisyGraphDataset`` class allows you to generate a graph dataset with LLM-based label noise for all datasets except 'Products', 'Cora-ML', and 'WikiCS', which have their own specific classes (``NoisyProducts``, ``NoisyCoraML``, and ``NoisyWikiCS``).
 
 Additionally, you can create label noise from various noise types by setting the noise_type parameter to one of the following:
@@ -62,7 +62,7 @@ noisy_label, transition_matrix = noisify_dataset(noisy_dataset, noise_type='topo
 ```
 
 
-##  Noisy label detector 
+##  (2) Noisy label detector 
 BeGIN provides a noisy label detector to help identify mislabeled data in graph datasets.
 The following command trains a noisy label detection model on the Cora-ML dataset using Graph Convolutional Networks (GCN) with LLM-based label noise.
 The ``data`` parameter must be one of the following: ``cora_ml``, ``wikics``,  ``products``, ``children``,``history``, ``photo``,  ``cornell``, ``texas``, ``washington``, ``wisconsin``.
