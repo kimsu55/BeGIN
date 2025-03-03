@@ -24,7 +24,7 @@ class BasePredictor:
         variables to record statistics.
         '''
         self.loss_fn = F.binary_cross_entropy_with_logits if dataset.n_classes == 1 else F.cross_entropy
-        self.edge_index = dataset.adj_coo.indices()
+        # self.edge_index = dataset.adj.indices()
         self.adj = dataset.adj if self.conf.dataset['sparse'] else dataset.adj.to_dense()
         self.feats = dataset.feats
         self.n_nodes = dataset.n_nodes
@@ -128,7 +128,11 @@ class NodeClassifier(BasePredictor):
     
     
     def get_prediction(self, features, adj, label=None, mask=None):
-        output = self.model(features, adj)
+        
+        if self.method == 'mlp':
+            output = self.model(features)
+        else:
+            output = self.model(features, adj)
         loss, acc = None, None
         if (label is not None) and (mask is not None):
             if self.n_classes == 1:

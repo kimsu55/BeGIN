@@ -5,6 +5,7 @@ from torch_geometric.utils import degree
 import torch.nn.functional as F
 import os
 from torch_sparse.tensor import SparseTensor
+from torch_geometric.utils import to_torch_csr_tensor
 import csv
 import pandas as pd
 from dataset.utils import normalize, get_split
@@ -56,8 +57,7 @@ class Dataset:
             self.adj = self.adj + torch.eye(self.adj.shape[0], device=self.adj.device).to_sparse()
         if conf.norm['adj_norm']:
             self.adj = normalize(self.adj, add_loop=False)
-        self.adj = self.adj.coalesce()
-        self.adj_coo  = self.adj
+        # self.adj = self.adj.coalesce()
 
 
     def prepare_data(self, name, feat_norm):
@@ -79,6 +79,7 @@ class Dataset:
         self.n_nodes = self.feats.shape[0]
         self.dim_feats = self.feats.shape[1]
         self.adj = torch.sparse_coo_tensor(self.g.edge_index, torch.ones(self.g.edge_index.shape[1]), [self.n_nodes, self.n_nodes])
+        self.adj = self.adj.to(torch.float)
 
         self.feats = self.feats.to(self.device)
         self.labels = self.labels.to(self.device)
@@ -87,6 +88,7 @@ class Dataset:
             self.feats = normalize(self.feats, style='row')
         
         self.adj = self.adj.coalesce()
+        self.adj = self.adj.to_sparse_csr()
 
         self.noisy_labels, tm = noisify_dataset(dataset, self.noise_type)
         self.noisy_labels = self.noisy_labels.to(self.device)

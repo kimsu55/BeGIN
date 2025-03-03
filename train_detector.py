@@ -21,7 +21,7 @@ def load_args():
     parser.add_argument('--noise_type', type=str,
                         default='llm',
                         choices=['clean', 'uniform', 'pair', 'llm', 'topology', 'feature', 'confidence'], help='Type of label noise')
-    parser.add_argument('--noise_rate', type=float,  default=None, help='Label noise rate')
+    parser.add_argument('--noise_rate', type=float,  default=None, help='Label noise rate, If set to None, the noise rate will be automatically derived from the LLM-based label noise in the dataset.')
     parser.add_argument('--method', type=str, default='sage', choices=['gcn', 'sage', 'gin', 'mlp', 'gat'], help="Select methods")
     
     
@@ -54,12 +54,9 @@ def run_GMM(losses, is_corrupted, random_state):
 def run_single_exp(dataset, args):
 
     model_conf = load_conf(None, args.method, dataset.name)
-
     model_conf.training['n_epochs'] = 100
     
-
     predictor = Detector(model_conf, dataset, args.method, args.device, args.seed)
-
     loss_traj = predictor.train()
     
     is_corrupted = (dataset.noisy_labels != dataset.labels).cpu().numpy().astype(int)
@@ -101,14 +98,14 @@ if __name__ == '__main__':
         best_epoch_list.append(best_epoch)
         best_roc_list.append(best_roc)
         roc_mean_list.append(roc_mean)
+        print(f'Run {run+1}/{args.runs} finished: Best Epoch: {best_epoch}, Best ROCAUC: {best_roc:.2f}, Mean  ROCAUC: {roc_mean:.2f}')
 
     best_epoch_list = np.array(best_epoch_list)
     best_roc_list = np.array(best_roc_list)
     roc_mean_list = np.array(roc_mean_list)
 
-    print(f'Best Epoch: {best_epoch_list.mean():.1f}')
-    print(f'Best ROCAUC: {best_roc_list.mean():.1f}')
-    print(f'Mean ROCAUC: {roc_mean_list.mean():.1f}')
+
+    print(f'Avg Best Epoch: {best_epoch_list.mean():.2f}, Avg Best ROCAUC: {best_roc_list.mean():.2f}, Avg Mean ROCAUC: {roc_mean_list.mean():.2f}')
 
 
 

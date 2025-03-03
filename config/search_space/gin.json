@@ -1,8 +1,11 @@
 {
   "dropout": {
-    "_type": "uniform",
+    "_type": "choice",
     "_value": [
       0.1,
+      0.3,
+      0.5,
+      0.7,
       0.9
     ]
   },

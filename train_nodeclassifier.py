@@ -19,11 +19,11 @@ def load_args():
     parser.add_argument('--noise_type', type=str,
                         default='llm',
                         choices=['clean', 'uniform', 'pair', 'llm', 'topology', 'feature', 'confidence'], help='Type of label noise')
-    parser.add_argument('--noise_rate', type=float,  default=None, help='Label noise rate')
+    parser.add_argument('--noise_rate', type=float,  default=None, help='Label noise rate, If set to None, the noise rate will be automatically derived from the LLM-based label noise in the dataset.')
     parser.add_argument('--method', type=str, default='sage', choices=['gcn', 'sage', 'gin', 'mlp', 'gat'], help="Select methods")
     
     
-    parser.add_argument('--runs', type=int, default=10)
+    parser.add_argument('--runs', type=int, default=2)
     parser.add_argument('--start_seed', type=int, default=0)
     parser.add_argument('--data_root', type=str, default='./data', help='Path to dataset')
     parser.add_argument('--device', type=str, default='cuda', help='Device')
@@ -44,7 +44,6 @@ def run_single_exp(dataset, args):
 
     results = predictor.train()
     
-
     return results
 
 
@@ -67,6 +66,7 @@ if __name__ == '__main__':
         dataset = Dataset(name=args.data, conf=data_conf, noise_type=args.noise_type, path=args.data_root, device=args.device)
 
         results = run_single_exp(dataset, args)
+        
         test_losses.append(results['test_loss'])
         train_acc.append(results['train'])
         valid_acc.append(results['valid'])
