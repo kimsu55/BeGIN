@@ -46,7 +46,7 @@ Additionally, you can create label noise from various noise types by setting the
 - pyg>=2.5.0
 - huggingface-hub
 - nltk
-- numpy, scikit-learn, pandas, tqdm
+- numpy, scikit-learn, pandas, tqdm, ruamel.yaml
 
 
 ```python

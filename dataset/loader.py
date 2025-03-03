@@ -32,7 +32,7 @@ class Dataset:
         Whether to print statistics.
     '''
 
-    def __init__(self, name,  conf, noise_type,  path='./data/',  device='cuda:0',  verbose=True):
+    def __init__(self, name,  conf, noise_type,  path='./data/',  device='cuda:0',  verbose=False):
         self.name = name
         self.path = path
         self.noise_type = noise_type
@@ -93,7 +93,7 @@ class Dataset:
     
     
     
-    def split_data(self, verbose=True):
+    def split_data(self, verbose=False):
 
         '''
         Function to conduct data splitting for various datasets.

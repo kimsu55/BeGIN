@@ -78,7 +78,7 @@ def calculate_transition_prob_vectorized(data, y, label_list, temp):
 
 
 
-def calculate_transition_matrix1(clean_labels, noisy_labels, num_classes): 
+def calculate_transition_matrix(clean_labels, noisy_labels, num_classes): 
     """
     Calculate the transition matrix from clean labels to noisy labels using NumPy.
     
@@ -138,7 +138,7 @@ def noisify_topology(data, name, num_classes, noise_rate, seed=0, diffusion_alph
         noisy[i] = np.random.choice(num_classes, p=modified_probs)
 
     
-    tm = calculate_transition_matrix1(y, noisy, num_classes)
+    tm = calculate_transition_matrix(y, noisy, num_classes)
 
     noisy = torch.tensor(noisy)
     
@@ -198,7 +198,7 @@ def noisify_feature(node_feats, labels, num_classes, noise_rate, temp=0.01, seed
         noisy_labels[i] = np.random.choice(num_classes, p=modified_probs)
 
     
-    tm = calculate_transition_matrix1(labels, noisy_labels, num_classes)
+    tm = calculate_transition_matrix(labels, noisy_labels, num_classes)
 
     noisy_labels = torch.tensor(noisy_labels)
     
@@ -232,7 +232,7 @@ def noisify_confidence(probs, labels, num_classes, noise_rate, seed=0, option='s
         noisy[i] = np.random.choice(num_classes, p=modified_probs)
 
     noisy = torch.tensor(noisy)
-    tm = calculate_transition_matrix1(labels, noisy, num_classes)
+    tm = calculate_transition_matrix(labels, noisy, num_classes)
     
     return noisy, tm
 
@@ -305,7 +305,9 @@ def noisify_dataset(dataset, noise_type, noise_rate=None, random_seed=0):
 
     Args:
         dataset: a list of tuples (x, y) where x is a numpy array and y is a scalar.
-        noise_rate: the rate of noise to add to the dataset.
+        noise_rate: the rate of noise to add to the dataset. Degfault is None.
+        noise_type: the type of noise to add to the dataset.
+        random_seed: the random seed to use for the noise generation.
 
     Returns:
         The noisy dataset.
@@ -346,14 +348,14 @@ def noisify_dataset(dataset, noise_type, noise_rate=None, random_seed=0):
     
     elif noise_type == 'llm':
         noisy_y = data.noisy
-        tm = calculate_transition_matrix1(y, noisy_y, num_classes)
+        tm = calculate_transition_matrix(y, noisy_y, num_classes)
 
     else:
         raise ValueError('Invalid noise type')
     
     
     actual_noise_rate = (noisy_y.numpy() != y_np).sum() / len(y)
-    print(f'Actual noise rate of {noise_type}: {actual_noise_rate:.3f}')
+    # print(f'Actual noise rate of {noise_type}: {actual_noise_rate:.3f}')
     
         
     return noisy_y, tm

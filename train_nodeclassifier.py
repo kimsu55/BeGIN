@@ -55,6 +55,11 @@ if __name__ == '__main__':
     data_conf = load_conf('./config/datasets/' + args.data + '.yaml')
     
 
+    test_losses = []
+    train_acc = []
+    valid_acc = []
+    test_acc = []
+
     for run, seed in enumerate(range(args.start_seed, args.runs + args.start_seed)):
         args.seed = seed
         setup_seed(args.seed)
@@ -62,7 +67,14 @@ if __name__ == '__main__':
         dataset = Dataset(name=args.data, conf=data_conf, noise_type=args.noise_type, path=args.data_root, device=args.device)
 
         results = run_single_exp(dataset, args)
-        print(results)
+        test_losses.append(results['test_loss'])
+        train_acc.append(results['train'])
+        valid_acc.append(results['valid'])
+        test_acc.append(results['test'])
+        print(f'Run {run+1}/{args.runs} finished: Test Loss: {results["test_loss"]:.4f}, Train Acc: {results["train"]}, Valid Acc: {results["valid"]}, Test Acc: {results["test"]}')
+    
+    print(f'Avg Test Loss: {np.mean(test_losses):.4f}, Avg Train Acc: {np.mean(train_acc):.2f}, Avg Valid Acc: {np.mean(valid_acc):.2f}, Avg Test Acc: {np.mean(test_acc):.2f}')
+
 
 
 

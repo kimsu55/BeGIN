@@ -18,7 +18,7 @@ class BasePredictor:
         self.general_init(dataset)
         self.method_init(conf)
 
-    def general_init(self, dataset, debug=True):
+    def general_init(self, dataset):
         '''
         This conducts necessary operations for an experiment, including the setting specified split,
         variables to record statistics.
@@ -32,7 +32,6 @@ class BasePredictor:
         self.noisy_labels = dataset.noisy_labels
         self.conf.model['n_feat'] = dataset.dim_feats
         self.conf.model['n_classes'] =  dataset.n_classes
-        self.conf.training['debug'] = debug 
 
         self.loss_trajectories = np.zeros([self.n_nodes, self.conf.training['n_epochs']])  
 
@@ -123,7 +122,7 @@ class NodeClassifier(BasePredictor):
         self.train_mask = dataset.train_masks
         self.val_mask = dataset.val_masks
         self.test_mask = dataset.test_masks
-        self.result = {'train': -1, 'valid': -1, 'test': -1}
+        self.result = {'test_loss':-1, 'train': -1, 'valid': -1, 'test': -1}
         
         super().__init__(conf, dataset, method,  device, seed)
     
@@ -168,17 +167,16 @@ class NodeClassifier(BasePredictor):
             flag, flag_earlystop = self.recoder.add(loss_val, acc_val)
             if flag:
                 self.best_val_loss = loss_val
-                self.result['valid'] = acc_val
-                self.result['train'] = acc_train
+                self.result['valid'] = round(acc_val * 100, 2) 
+                self.result['train'] = round(acc_train *100, 2)
                 self.weights = deepcopy(self.model.state_dict())
             elif flag_earlystop:
                 break
 
 
         loss_test, acc_test = self.test(self.test_mask)
-        self.result['test'] = acc_test
-        if self.conf.training['debug']:
-            print("Loss(test) {:.4f} | Acc(test) {:.4f}".format(loss_test.item(), acc_test))
+        self.result['test'] = round(acc_test*100, 2)
+        self.result['test_loss'] = loss_test.item()
         return self.result
 
 
