@@ -84,4 +84,10 @@ The parameters for this classifier are the same as those mentioned above.
 python train_nodeclassifier.py  --data cora_ml --noise_type llm  --method gcn --device cuda
 ```
 
+## Additional Models for Node classifier using NoisyGL 
+We incorporate **NoisyGL** ([NoisyGL: A Comprehensive Benchmark for Graph Neural Networks under Label Noise](https://github.com/eaglelab-zju/NoisyGL.git)) as a **submodule** to explore more **noisy-robust models** for training on noisy graph datasets.
 
+```bash
+cd BeGIN
+git submodule add https://github.com/eaglelab-zju/NoisyGL.git NoisyGL
+```
