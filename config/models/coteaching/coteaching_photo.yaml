@@ -1,0 +1,24 @@
+analysis:
+  flag: false
+  project: gnn-with-label-noise
+  save_graph: false
+dataset:
+  sparse: true
+model:
+  _name: wandb.config
+  act: F.relu
+  dropout: 0.7
+  ek: 10
+  input_layer: false
+  method: coteaching
+  n_hidden: 32
+  n_layer: 1
+  noise_rate: 0.2
+  norm_info: null
+  output_layer: false
+training:
+  criterion: metric
+  lr: 0.0005
+  n_epochs: 200
+  patience: null
+  weight_decay: 0.01

@@ -1,0 +1,36 @@
+analysis:
+  flag: false
+  project: gnn-with-label-noise
+  save_graph: false
+dataset:
+  sparse: false
+model:
+  IsGraNoise: true
+  P_gra_sel: 0.9
+  P_sel: 0.9
+  P_sel_onehot: 0.95
+  SamSe: false
+  Trans_layer_num: 2
+  _name: wandb.config
+  act: F.relu
+  dropout: 0.1
+  dropout_att: 0.4
+  input_layer: false
+  method: rncgln
+  n_heads: 8
+  n_hidden: 64
+  n_layer: 4
+  norm_info: null
+  order: 4
+  output_layer: false
+  r1: 0.1
+  random_aug_feature: 0.4
+  tau: 1
+  trans_dim: 128
+training:
+  criterion: metric
+  lr: 0.005
+  n_epochs: 500
+  patience: null
+  warmup_num: 100
+  weight_decay: 0.0001

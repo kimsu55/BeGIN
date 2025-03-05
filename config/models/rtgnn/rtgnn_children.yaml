@@ -5,17 +5,27 @@ analysis:
 dataset:
   sparse: true
 model:
+  K: 100
+  _name: wandb.config
   act: F.relu
-  dropout: 0.42995556627060294
+  alpha: 0.1
+  co_lambda: 0.05
+  decay_w: 0.1
+  dropout: 0.1
+  edge_hidden: 64
+  gamma: 0.05
   input_layer: false
-  method: gcn
-  n_hidden: 32
-  n_layer: 2
+  method: rtgnn
+  n_hidden: 64
+  n_layer: 1
+  n_neg: 100
   norm_info: null
   output_layer: false
+  tau: 0.05
+  th: 0.95
 training:
   criterion: metric
   lr: 0.05
   n_epochs: 200
   patience: null
-  weight_decay: 0.0005
+  weight_decay: 5e-05

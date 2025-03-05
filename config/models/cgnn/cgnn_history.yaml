@@ -1,0 +1,26 @@
+analysis:
+  flag: false
+  project: gnn-with-label-noise
+  save_graph: false
+dataset:
+  sparse: true
+model:
+  _name: wandb.config
+  act: F.relu
+  dropout: 0.1
+  input_layer: false
+  method: cgnn
+  n_hidden: 128
+  n_layer: 3
+  noise_rate_init: 0.1
+  norm_info: null
+  output_layer: false
+  temperature: 0.95
+  threshold: 0.6
+training:
+  criterion: metric
+  lr: 0.05
+  n_epochs: 200
+  patience: null
+  warmup_epochs: 180
+  weight_decay: 0.0001

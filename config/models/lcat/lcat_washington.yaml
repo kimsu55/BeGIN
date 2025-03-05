@@ -1,0 +1,25 @@
+analysis:
+  flag: false
+  project: gnn-with-label-noise
+  save_graph: false
+dataset:
+  sparse: true
+model:
+  _name: wandb.config
+  alpha: 0.6
+  dropout: 0.1
+  heads: 4
+  input_layer: false
+  layer: 1
+  module: gat_gcn2_v2
+  n_hidden: 32
+  negative_slope: 0.9
+  norm_info: null
+  output_layer: false
+  theta: 0.1
+training:
+  criterion: metric
+  lr: 0.01
+  n_epochs: 200
+  patience: null
+  weight_decay: 0.1

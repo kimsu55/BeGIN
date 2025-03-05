@@ -6,7 +6,9 @@ from numpy.testing import assert_array_almost_equal
 import torch.nn.functional as F
 import torch_geometric.transforms as T
 from tqdm import tqdm
-from torch_scatter import scatter_add
+# from torch_scatter import scatter_add
+from torch_geometric.utils import scatter
+
 from torch_geometric.utils import remove_self_loops, to_torch_csr_tensor
 from dataset.utils import setup_seed
 
@@ -60,7 +62,10 @@ def calculate_transition_prob_vectorized(data, y, label_list, temp):
         c_mask = (label_vals == (c + 1))  # edges pointing to label c
         c_rows = row_idx[c_mask]         # source nodes for edges that point to label c
         c_edge_weights = edge_vals[c_mask]
-        row_sums = scatter_add(c_edge_weights, c_rows, dim=0, dim_size=N)
+        # row_sums = scatter_add(c_edge_weights, c_rows, dim=0, dim_size=N)
+
+        row_sums = scatter(c_edge_weights, c_rows, dim=0, dim_size=N, reduce='add')
+
         transition_probs[:, c] = row_sums
 
 

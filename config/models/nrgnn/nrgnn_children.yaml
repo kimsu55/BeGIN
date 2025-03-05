@@ -1,0 +1,32 @@
+analysis:
+  flag: false
+  project: gnn-with-label-noise
+  save_graph: false
+dataset:
+  add_loop: true
+  feat_norm: true
+  normalize: true
+  sparse: true
+model:
+  _name: wandb.config
+  act: F.relu
+  alpha: 0.03
+  beta: 1
+  dropout: 0.1
+  edge_hidden: 64
+  input_layer: false
+  method: nrgnn
+  n_hidden: 16
+  n_layer: 1
+  n_n: 50
+  n_p: 50
+  norm_info: null
+  output_layer: false
+  p_u: 0.8
+  t_small: 0.1
+training:
+  criterion: metric
+  lr: 0.05
+  n_epochs: 200
+  patience: null
+  weight_decay: 1e-05
