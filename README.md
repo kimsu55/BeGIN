@@ -45,13 +45,8 @@ conda install pyg -c pyg
 pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.0.1+cu118.html
 
 pip3 install -U scikit-learn
-pip install huggingface-hub
-pip install ruamel.yaml
-pip install nltk
-pip install pandas
-pip install nni
-pip install pyyaml
-pip install matplotlib
+pip install huggingface-hub ruamel.yaml nltk pandas nni pyyaml matplotlib
+
 ```
 
 
