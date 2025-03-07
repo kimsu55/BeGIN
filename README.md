@@ -35,13 +35,24 @@ This framework allows users to use real-world datasets as follows:
 | **Node homophily**  | 0.810 | 0.659 | 0.790 | 0.464 | 0.784 | 0.790 | 0.116 | 0.067 | 0.162 | 0.151|
 | **Noise rate (LLM)** | 0.306 | 0.309 | 0.303 | 0.575 | 0.322 | 0.356 | 0.272 | 0.246 | 0.314 | 0.283|
 
-## Required Dependencies
-- Python 3.8+
-- torch>=2.0.1, torch_scatter
-- pyg>=2.3.1
-- huggingface-hub
-- nltk
-- numpy, scikit-learn, pandas, tqdm, ruamel.yaml
+## Python environment setup with Conda
+```python
+conda create -n begin python=3.8 
+conda activate begin
+
+conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.8 -c pytorch -c nvidia
+conda install pyg -c pyg
+pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.0.1+cu118.html
+
+pip3 install -U scikit-learn
+pip install huggingface-hub
+pip install ruamel.yaml
+pip install nltk
+pip install pandas
+pip install nni
+pip install pyyaml
+pip install matplotlib
+```
 
 
 ##  Quick Example for BeGIN Dataset 
