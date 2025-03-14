@@ -33,14 +33,14 @@ warnings.filterwarnings("ignore", category=UserWarning)  # Ignores only UserWarn
 def load_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--data', type=str,
-                        default='cornell',
+                        default='cora_ml',
                         choices=['cora_ml', 'wikics',  'products', 'children','history', 'photo',  'cornell', 'texas','washington', 'wisconsin'], 
                         help='Select dataset')
     parser.add_argument('--noise_type', type=str,
                         default='llm',
                         choices=['clean', 'uniform', 'pair', 'llm', 'topology', 'feature', 'confidence'], help='Type of label noise')
     parser.add_argument('--noise_rate', type=float,  default=None, help='Label noise rate, If set to None, the noise rate will be automatically derived from the LLM-based label noise in the dataset.')
-    parser.add_argument('--method', type=str, default='apl', choices=['lcat', 'smodel','forward', 'backward', 'coteaching', 'sce', 'jocor',  'apl',  'dgnn','cp',  'nrgnn', 'rtgnn','clnode',  'cgnn', 'crgnn',   'pignn','rncgln', 'r2lp'], help="Select methods")
+    parser.add_argument('--method', type=str, default='smodel', choices=['lcat', 'smodel','forward', 'backward', 'coteaching', 'sce', 'jocor',  'apl',  'dgnn','cp',  'nrgnn', 'rtgnn','clnode',  'cgnn', 'crgnn',   'pignn','rncgln', 'r2lp'], help="Select methods")
     parser.add_argument('--runs', type=int, default=10)
     parser.add_argument('--start_seed', type=int, default=0)
     parser.add_argument('--data_root', type=str, default='./data', help='Path to dataset')
@@ -77,7 +77,7 @@ if __name__ == '__main__':
         valid_acc.append(results['valid']*100)
         test_acc.append(results['test']*100)
         print(f'Run {run+1}/{args.runs} finished: Train Acc: {results["train"]*100:.2f}, Valid Acc: {results["valid"]*100:.2f}, Test Acc: {results["test"]*100:.2f}')
-    print(f'Avg Train Acc: {np.mean(train_acc):.2f}, Avg Valid Acc: {np.mean(valid_acc):.2f}, Avg Test Acc: {np.mean(test_acc):.2f}')
+    print(f'#{args.method}# Avg Train Acc: {np.mean(train_acc):.2f}, Avg Valid Acc: {np.mean(valid_acc):.2f}, Avg Test Acc: {np.mean(test_acc):.2f}')
 
 
 

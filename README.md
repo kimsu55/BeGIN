@@ -37,14 +37,17 @@ This framework allows users to use real-world datasets as follows:
 
 ## Python environment setup with Conda
 ```python
-conda create -n begin python=3.8 
+conda create -n begin python=3.11 
+
 conda activate begin
 
-conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.8 -c pytorch -c nvidia
-conda install pyg -c pyg
-pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.0.1+cu118.html
+conda install pytorch==2.1.0 numpy==1.26.4 pytorch-cuda=12.1 -c pytorch -c nvidia 
 
-pip3 install -U scikit-learn
+conda install pyg -c pyg
+pip install torch_sparse==0.6.18+pt21cu121 -f https://data.pyg.org/whl/torch-2.1.0+cu121.html
+pip install torch_cluster==1.6.3+pt21cu121 -f https://data.pyg.org/whl/torch-2.1.0+cu121.html
+pip install torch_scatter==2.1.2+pt21cu121 -f https://data.pyg.org/whl/torch-2.1.0+cu121.html
+
 pip install huggingface-hub ruamel.yaml nltk pandas nni pyyaml matplotlib
 
 ```
