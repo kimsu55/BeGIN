@@ -40,7 +40,7 @@ def load_args():
                         default='llm',
                         choices=['clean', 'uniform', 'pair', 'llm', 'topology', 'feature', 'confidence'], help='Type of label noise')
     parser.add_argument('--noise_rate', type=float,  default=None, help='Label noise rate, If set to None, the noise rate will be automatically derived from the LLM-based label noise in the dataset.')
-    parser.add_argument('--method', type=str, default='apl', choices=['lcat', 'smodel','forward', 'backward', 'coteaching', 'sce', 'jocor',  'apl',  'dgnn','cp',  'nrgnn', 'rtgnn','clnode',  'cgnn', 'crgnn',   'pignn','rncgln', 'r2lp'], help="Select methods")
+    parser.add_argument('--method', type=str, default='cgnn', choices=['lcat', 'smodel','forward', 'backward', 'coteaching', 'sce', 'jocor',  'apl',  'dgnn','cp',  'nrgnn', 'rtgnn','clnode',  'cgnn', 'crgnn',   'pignn','rncgln', 'r2lp'], help="Select methods")
     parser.add_argument('--runs', type=int, default=10)
     parser.add_argument('--start_seed', type=int, default=0)
     parser.add_argument('--data_root', type=str, default='./data', help='Path to dataset')
